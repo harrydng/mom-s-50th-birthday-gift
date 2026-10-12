@@ -1,0 +1,62 @@
+:root {
+  --paper: #fbf3e4;
+  --paper-edge: #ecdcbc;
+  --ink: #4a3426;
+  --ink-soft: #7a6050;
+  --accent: #c0554a;
+  --accent-dark: #a2443a;
+  --bg: #f1e2c8;
+  --shadow: 0 10px 30px rgba(74, 52, 38, 0.22);
+  --font-body: 'Lora', Georgia, serif;
+  --font-hand: 'Dancing Script', cursive;
+}
+
+html, body, #root { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  background: var(--bg) url('/mom_background.png') center / cover fixed no-repeat;
+}
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 1rem; min-height: 0; }
+
+.handwritten { font-family: var(--font-hand); font-weight: 600; }
+
+.paper {
+  background: var(--paper);
+  border: 1px solid var(--paper-edge);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(150, 120, 90, 0.12) 32px);
+}
+
+.btn {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--accent);
+  background: var(--paper);
+  color: var(--accent-dark);
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(74, 52, 38, 0.18); }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--accent-dark); }
+.btn-small { padding: 0.35rem 0.9rem; font-size: 0.9rem; }
+
+.counter { color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+@keyframes drop-in { from { transform: translateY(-100%); opacity: 0; } }
+@keyframes page-turn { from { opacity: 0; transform: translateX(24px) rotate(0.6deg); } }
+.page-turn { animation: page-turn 0.45s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes fade-in { from { opacity: 0; } }
