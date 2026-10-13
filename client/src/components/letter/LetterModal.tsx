@@ -17,12 +17,12 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-20 flex items-center justify-center bg-black/10 backdrop-blur-[3px] animate-[fade-in_0.4s_ease_both] px-3 pb-3 pt-40"
+      className="fixed inset-0 z-20 flex items-center justify-center bg-black/10 backdrop-blur-[3px] animate-[fade-in_0.4s_ease_both] px-3 pb-3 pt-28 md:pt-40"
       role="dialog"
       aria-modal="true"
       aria-label={config.letters.navLabel}
     >
-      <div className="relative flex max-h-[96vh] w-full flex-col items-center">
+      <div className="relative flex max-h-[calc(100dvh-8rem)] md:max-h-[calc(100dvh-11rem)] w-full flex-col items-center">
         {onClose && (
           <button
             className="absolute right-3 top-1 z-10 cursor-pointer text-4xl text-(--ink-soft)"
@@ -37,7 +37,7 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
           <ParchmentLetter key={letter.id} letter={letter} />
         </div>
 
-        <div className="mt-1 flex items-center justify-center gap-3 px-3 py-2">
+        <div className="mt-1 flex flex-wrap items-center justify-center gap-2 px-3 py-2 md:gap-3">
           {letters.map((l, i) => (
             <button
               key={l.id}

@@ -5,7 +5,7 @@ export const config = {
     skip: 'Bỏ qua →',
   },
   letters: {
-    navLabel: 'Thư gửi mẹ',
+    navLabel: 'Thư',
     openAlbum: 'Mở album kỷ niệm',
     close: 'Đóng thư',
   },
@@ -22,6 +22,7 @@ export const config = {
   album: {
     prev: '← Trước',
     next: 'Tiếp →',
+    finalSection: 'Lời nhắn cuối',
     timelineButton: 'Xem dòng thời gian',
     backToAlbum: 'Quay lại album',
     timelineTitle: 'Dòng thời gian',
@@ -31,7 +32,10 @@ export const config = {
     playLabel: '▶ Phát video',
     src: '/media/video/happy-birthday.mp4',
     poster: '/media/video/poster.jpg',
-    navLabel: 'Xem video chúc mừng',
+    navLabel: 'Video',
+  },
+  nav: {
+    menu: 'Menu',
   },
   skip: {
     button: 'Bỏ qua ⏭',

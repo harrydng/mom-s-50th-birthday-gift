@@ -11,7 +11,7 @@ export function VideoFinale({ onPlayingChange }: Props) {
 
   return (
     <div className="flex w-full max-w-3xl flex-col items-center gap-6 text-center">
-      <p className="handwritten text-4xl text-(--accent-dark) md:text-5xl">{config.video.intro}</p>
+      <p className="handwritten text-3xl text-(--accent-dark) sm:text-4xl md:text-5xl">{config.video.intro}</p>
       <div className="w-full rotate-1 rounded-sm bg-white p-3 shadow-xl">
         {started ? (
           <video

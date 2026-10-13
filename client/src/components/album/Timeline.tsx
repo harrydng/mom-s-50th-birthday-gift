@@ -29,20 +29,20 @@ export function Timeline({ currentIndex, onSelect }: Props) {
         i === currentIndex ? 'ring-4 ring-(--accent)' : ''
       }`}
     >
-      <PhotoImage src={p.src} alt={p.year} className="block size-44 object-cover" fallbackClassName="size-44" />
+      <PhotoImage src={p.src} alt={p.year} className="block size-32 object-cover md:size-44" fallbackClassName="size-32 md:size-44" />
       <span className="handwritten block text-center text-xl text-(--accent-dark)">{p.year}</span>
     </button>
   )
 
   return (
-    <section className="flex w-full flex-1 flex-col gap-1 pb-40 pt-48">
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center pt-6">
-        <h2 className="handwritten col-start-2 mt-2  translate-y-5 text-center text-7xl text-(--accent-dark) md:text-8xl">
+    <section className="flex w-full flex-1 flex-col gap-1 pb-10 pt-36 md:pb-40 md:pt-48">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center pt-2 md:pt-6">
+        <h2 className="handwritten col-start-2 mt-2 text-center text-5xl text-(--accent-dark) sm:text-7xl md:translate-y-5 md:text-8xl">
           {config.album.timelineTitle}
         </h2>
       </div>
 
-      <div className="flex flex-1 items-center gap-12 overflow-x-auto pb-6 pl-8 pr-8 pt-4 md:pl-20">
+      <div className="flex flex-1 items-center gap-8 overflow-x-auto pb-6 pl-6 pr-6 pt-4 md:gap-12 md:pl-20 md:pr-8">
         {stages.map((stage) => {
           const items = photos.map((p, i) => ({ p, i })).filter(({ p }) => p.stageId === stage.id)
           if (items.length === 0) return null
@@ -51,7 +51,7 @@ export function Timeline({ currentIndex, onSelect }: Props) {
             <div className="shrink-0" key={stage.id}>
               <h3 className="mb-3 border-b-2 border-dashed border-(--ink-soft)/40 pb-1">
                 <button
-                  className="handwritten flex cursor-pointer items-center gap-3 whitespace-nowrap text-3xl text-(--ink) [text-shadow:0_0_10px_rgba(251,243,228,0.9)]"
+                  className="handwritten flex cursor-pointer items-center gap-3 whitespace-nowrap text-2xl text-(--ink) md:text-3xl [text-shadow:0_0_10px_rgba(251,243,228,0.9)]"
                   onClick={() => toggle(stage.id)}
                   aria-expanded={open}
                 >

@@ -180,8 +180,18 @@
 @media (max-width: 700px) {
   .memory-spread {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 30px 20px;
+    gap: 28px;
+    padding: 24px 16px;
+  }
+
+  /* Shorter photo so the note below is not pushed off the screen */
+  .memory-photo-image,
+  .memory-photo-fallback {
+    height: clamp(200px, 55vw, 280px);
+  }
+
+  .memory-photo figcaption {
+    font-size: 28px;
   }
 
   .memory-photo {

@@ -6,13 +6,13 @@
 
   position: relative;
   width: min(var(--letter-width), 94vw);
-  min-height: 640px;
+  min-height: min(640px, 70dvh);
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* text starts at the top-left */
   margin: 25px auto;
   /* TEXT AREA: top/bottom, then left/right. Bigger = text sits further inside the paper */
-  padding: clamp(60px, 9vw, 95px) clamp(50px, 11vw, 110px);
+  padding: clamp(44px, 9vw, 95px) clamp(34px, 11vw, 110px);
 
   background: url('/letter.png') center / 100% 100% no-repeat;
   border: 0;
@@ -52,7 +52,7 @@
   padding-top: 20px;
   text-align: right;
   white-space: pre-line;
-  font-size: 30px;
+  font-size: clamp(22px, 6vw, 30px);
   line-height: 1.5;
   color: #a94c40;
 }
