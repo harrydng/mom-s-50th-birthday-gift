@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { Album } from './components/Album'
-import { Envelope } from './components/Envelope'
-import { LetterModal } from './components/LetterModal'
-import { SkipDialog } from './components/SkipDialog'
-import { Timeline } from './components/Timeline'
-import { TopNav } from './components/TopNav'
+import { Album } from './components/album/Album'
+import { EnvelopeScreen } from './components/envelope/EnvelopeScreen'
+import { LetterModal } from './components/letter/LetterModal'
+import { SkipDialog } from './components/nav/SkipDialog'
+import { Timeline } from './components/album/Timeline'
+import { TopNav } from './components/nav/TopNav'
 import { config } from './data/config'
 import { photos } from './data/photos'
 import { playlist } from './data/playlist'
@@ -67,7 +67,7 @@ function App() {
 
       <main>
         {view === 'envelope' && (
-          <Envelope
+          <EnvelopeScreen
             onOpenClick={music.start}
             onSkip={() => {
               setIntroDone(true)

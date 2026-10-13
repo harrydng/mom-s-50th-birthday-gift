@@ -1,5 +1,5 @@
-import { config } from '../data/config'
-import { photos } from '../data/photos'
+import { config } from '../../data/config'
+import { photos } from '../../data/photos'
 
 interface Props {
   index: number

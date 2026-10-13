@@ -1,8 +1,8 @@
-import { config } from '../data/config'
-import type { MusicControls } from '../hooks/useMusic'
-import { AlbumNav } from './AlbumNav'
+import { config } from '../../data/config'
+import type { MusicControls } from '../../hooks/useMusic'
+import { AlbumNav } from '../album/AlbumNav'
 import { MusicPlayer } from './MusicPlayer'
-import { ViewToggle } from './ViewToggle'
+import { ViewToggle } from '../album/ViewToggle'
 
 interface Props {
   music: MusicControls

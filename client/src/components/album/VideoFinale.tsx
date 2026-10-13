@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../data/config'
+import { config } from '../../data/config'
 
 interface Props {
   /** true while the video is playing, so the parent can pause the music */

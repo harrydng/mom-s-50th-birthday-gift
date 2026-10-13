@@ -1,4 +1,4 @@
-import type { Letter } from '../types'
+import type { Letter } from '../../types'
 import './ParchmentLetter.css'
 
 export function ParchmentLetter({ letter }: { letter: Letter }) {

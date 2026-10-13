@@ -1,4 +1,4 @@
-import { config } from '../data/config'
+import { config } from '../../data/config'
 
 interface Props {
   view: 'album' | 'timeline'

@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
-import { photos } from '../data/photos'
+import { photos } from '../../data/photos'
 import { PhotoImage } from './PhotoImage'
 import { VideoFinale } from './VideoFinale'
 

@@ -1,5 +1,5 @@
-import { config } from '../data/config'
-import type { MusicControls } from '../hooks/useMusic'
+import { config } from '../../data/config'
+import type { MusicControls } from '../../hooks/useMusic'
 
 const iconButton =
   'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-lg text-(--accent-dark) transition hover:bg-(--accent)/10 disabled:opacity-40'

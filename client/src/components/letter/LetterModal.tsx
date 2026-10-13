@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { config } from '../data/config'
-import { letters } from '../data/letters'
+import { config } from '../../data/config'
+import { letters } from '../../data/letters'
 import { ParchmentLetter } from './ParchmentLetter'
 
 interface Props {
