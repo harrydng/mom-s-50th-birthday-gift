@@ -44,7 +44,7 @@ export function PhotoMemory({
           </p>
 
           <h2 className="handwritten memory-note-title">
-            {title || 'Một chút thương nhớ'}
+            {title || 'Kỷ niệm'}
           </h2>
 
           <div className="memory-note-divider" aria-hidden="true" />
