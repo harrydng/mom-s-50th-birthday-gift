@@ -6,7 +6,8 @@ import { ViewToggle } from './ViewToggle'
 
 interface Props {
   music: MusicControls
-  onOpenLetter: () => void
+  /** Omit on the envelope screen: there is no letter to reopen yet. */
+  onOpenLetter?: () => void
   /** Album position + setter; shown above the bottom buttons while browsing the album. */
   album?: { index: number; onChange: (index: number) => void }
   /** Album <-> timeline switch, shown under the music player once unlocked. */
@@ -40,14 +41,16 @@ export function TopNav({ music, onOpenLetter, album, viewToggle, onSkip, onOpenV
           </div>
         )}
         <div className="flex items-center justify-center gap-4">
-          <button
-            className="pointer-events-auto cursor-pointer border-0 bg-transparent p-0 leading-none transition hover:scale-110"
-            onClick={onOpenLetter}
-            aria-label={config.letters.navLabel}
-            title={config.letters.navLabel}
-          >
-            <img src="/envelop.png" alt="" className="size-30 object-contain" />
-          </button>
+          {onOpenLetter && (
+            <button
+              className="pointer-events-auto cursor-pointer border-0 bg-transparent p-0 leading-none transition hover:scale-110"
+              onClick={onOpenLetter}
+              aria-label={config.letters.navLabel}
+              title={config.letters.navLabel}
+            >
+              <img src="/envelop.png" alt="" className="size-30 object-contain" />
+            </button>
+          )}
           {onOpenVideo && (
             <button
               className="pointer-events-auto cursor-pointer border-0 bg-transparent p-0 leading-none transition hover:scale-110"

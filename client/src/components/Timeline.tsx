@@ -12,7 +12,7 @@ export function Timeline({ currentIndex, onSelect }: Props) {
   return (
     <section className="flex w-full flex-1 flex-col gap-1 pb-40 pt-48">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center pt-6">
-        <h2 className="handwritten col-start-2 mt-6  translate-y-5 text-center text-7xl text-(--accent-dark) md:text-8xl">
+        <h2 className="handwritten col-start-2 mt-2  translate-y-5 text-center text-7xl text-(--accent-dark) md:text-8xl">
           {config.album.timelineTitle}
         </h2>
       </div>

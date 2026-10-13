@@ -1,19 +1,21 @@
 import type { Letter } from '../types'
 
-// Page 1 = your letter, page 2 = dad's. Add or reorder freely.
+// One entry per letter; each gets a button (tabLabel) under the paper.
 export const letters: Letter[] = [
   {
     id: 'from-me',
-    title: 'Gửi mẹ yêu',
+    tabLabel: 'Con trai',
+    title: 'Gửi mẹ',
     paragraphs: [
-      'Mẹ ơi, chúc mừng sinh nhật 50 tuổi của mẹ!',
-      '(Viết lời nhắn của con ở đây. Mỗi phần tử là một đoạn văn.)',
+      'Chúc mừng sinh nhật 50 tuổi của mẹ!',
+      'lời nhắn',
       'Con yêu mẹ rất nhiều.',
     ],
-    signature: 'Con của mẹ',
+    signature: 'Con của mẹ, Harry',
   },
   {
     id: 'from-dad',
+    tabLabel: 'Chồng',
     title: 'Một lời nhắn từ bố',
     paragraphs: [
       'Em yêu, chúc mừng sinh nhật em.',

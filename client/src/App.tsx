@@ -45,32 +45,34 @@ function App() {
 
   return (
     <div className="app">
-      {envelopeOpened && (
-        <TopNav
-          music={music}
-          onOpenLetter={() => setLetterOpen(true)}
-          album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex } : undefined}
-          viewToggle={
-            free && introDone
-              ? { view, onToggle: () => setView(view === 'album' ? 'timeline' : 'album') }
-              : undefined
-          }
-          onSkip={free ? undefined : () => setSkipAsked(true)}
-          onOpenVideo={
-            view === 'timeline'
-              ? () => {
-                  changeIndex(photos.length)
-                  setView('album')
-                }
-              : undefined
-          }
-        />
-      )}
+      <TopNav
+        music={music}
+        onOpenLetter={envelopeOpened ? () => setLetterOpen(true) : undefined}
+        album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex } : undefined}
+        viewToggle={
+          free && introDone && envelopeOpened
+            ? { view, onToggle: () => setView(view === 'album' ? 'timeline' : 'album') }
+            : undefined
+        }
+        onSkip={envelopeOpened && !free ? () => setSkipAsked(true) : undefined}
+        onOpenVideo={
+          view === 'timeline'
+            ? () => {
+                changeIndex(photos.length)
+                setView('album')
+              }
+            : undefined
+        }
+      />
 
       <main>
         {view === 'envelope' && (
           <Envelope
             onOpenClick={music.start}
+            onSkip={() => {
+              setIntroDone(true)
+              setView('album')
+            }}
             onOpened={() => {
               // The letters are the first thing she reads; the album sits behind them.
               setView('album')

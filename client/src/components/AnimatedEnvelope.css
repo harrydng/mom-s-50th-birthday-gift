@@ -1,0 +1,211 @@
+.letter-gift {
+  /* POSITION: adjust these */
+  --gift-x: 0px;
+  --gift-y: 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translate(var(--gift-x), var(--gift-y));
+}
+
+.keepsake-envelope {
+  /* SIZE: change 420px to make it bigger or smaller */
+  width: min(500px, 80vw);
+  aspect-ratio: 1.55;
+  position: relative;
+  isolation: isolate;
+  perspective: 1200px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 18px 15px rgb(92 65 42 / 18%));
+  transition: transform .25s ease;
+}
+
+/* HOVER: change 1.05 to grow more or less */
+.keepsake-envelope:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.keepsake-envelope:focus-visible {
+  outline: 3px solid #a94c40;
+  outline-offset: 8px;
+}
+
+.keepsake-back,
+.keepsake-flap,
+.keepsake-left,
+.keepsake-right,
+.keepsake-bottom {
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+
+  /* Subtle grain over the paper color */
+  background-image:
+    repeating-linear-gradient(
+      18deg,
+      transparent 0 3px,
+      rgb(125 91 53 / 3%) 3px 4px
+    ),
+    radial-gradient(ellipse at center, #fff7e8, #e7cfaa);
+}
+
+.keepsake-back {
+  z-index: 0;
+  background-color: #dfc49e;
+  box-shadow: inset 0 0 25px rgb(114 76 40 / 15%);
+}
+
+.keepsake-letter {
+  position: absolute;
+  z-index: 1;
+  inset: 12px 8% 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px;
+  text-align: left;
+  background: #fffaf0;
+  border: 1px solid #eadcc8;
+  box-shadow: 0 2px 12px rgb(91 63 37 / 10%);
+  color: #a94c40;
+}
+
+.keepsake-letter .handwritten {
+  font-size: clamp(22px, 5vw, 32px);
+}
+
+.letter-rule {
+  width: 90%;
+  height: 1px;
+  background: #dccbb7;
+}
+
+.letter-rule.short {
+  width: 60%;
+}
+
+.letter-love {
+  margin-top: auto;
+  font: italic 14px Georgia, serif;
+}
+
+.keepsake-left {
+  z-index: 3;
+  clip-path: polygon(0 0, 58% 56%, 0 100%);
+}
+
+.keepsake-right {
+  z-index: 3;
+  clip-path: polygon(100% 0, 42% 56%, 100% 100%);
+}
+
+.keepsake-bottom {
+  z-index: 4;
+  clip-path: polygon(0 100%, 50% 42%, 100% 100%);
+  background-image: linear-gradient(0deg, #ead5b4, #fff4e1);
+}
+
+.keepsake-flap {
+  z-index: 5;
+  clip-path: polygon(0 0, 100% 0, 50% 59%);
+  transform-origin: center top;
+  backface-visibility: visible;
+  background-image: linear-gradient(180deg, #f5e6cd, #e6cba3);
+}
+
+.keepsake-seal {
+  position: absolute;
+  z-index: 6;
+  top: 48%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  border-radius: 46% 54% 48% 52%;
+  color: #edc0a5;
+  background: radial-gradient(
+    circle at 35% 28%,
+    #cf8770,
+    #a94c40 65%,
+    #823b33
+  );
+  border: 4px solid #b66a54;
+  box-shadow:
+    inset 0 0 0 2px #d59676,
+    inset 0 0 8px #78352b,
+    0 4px 7px rgb(91 45 34 / 25%);
+}
+
+.keepsake-seal svg {
+  width: 33px;
+  filter: drop-shadow(0 1px 0 #793c30);
+}
+
+.keepsake-sprig {
+  position: absolute;
+  right: 5%;
+  bottom: 4%;
+  z-index: 5;
+  width: 23%;
+  height: 45%;
+  opacity: .8;
+  pointer-events: none;
+}
+
+/* Seal fades, flap folds back, letter slides up. */
+.is-opening .keepsake-seal {
+  animation: seal-release .3s ease forwards;
+}
+
+.is-opening .keepsake-flap {
+  animation: flap-open .8s .15s ease-in-out forwards;
+}
+
+.is-opening .keepsake-letter {
+  animation: letter-rise .8s .85s ease-in-out forwards;
+}
+
+@keyframes seal-release {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -60%) rotate(-8deg) scale(.85);
+  }
+}
+
+@keyframes flap-open {
+  0% {
+    transform: rotateX(0);
+    z-index: 5;
+  }
+  49% {
+    z-index: 5;
+  }
+  50% {
+    z-index: 0;
+  }
+  100% {
+    transform: rotateX(180deg);
+    z-index: 0;
+  }
+}
+
+@keyframes letter-rise {
+  to {
+    transform: translateY(-58%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-opening .keepsake-seal,
+  .is-opening .keepsake-flap,
+  .is-opening .keepsake-letter {
+    animation-duration: .01ms;
+    animation-delay: 0ms;
+  }
+}

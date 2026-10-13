@@ -1,0 +1,58 @@
+.parchment-letter {
+  /* SIZE AND POSITION */
+  --letter-width: 800px;
+  --letter-x: 0px;
+  --letter-y: -20px;
+
+  position: relative;
+  width: min(var(--letter-width), 94vw);
+  min-height: 640px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* text starts at the top-left */
+  margin: 25px auto;
+  /* TEXT AREA: top/bottom, then left/right. Bigger = text sits further inside the paper */
+  padding: clamp(60px, 9vw, 95px) clamp(50px, 11vw, 110px);
+
+  background: url('/letter.png') center / 100% 100% no-repeat;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: #523a28;
+
+  transform: translate(var(--letter-x), var(--letter-y));
+  filter: drop-shadow(0 12px 16px rgb(80 50 25 / 18%));
+}
+
+/* The paper image already has its own border and decoration */
+.parchment-letter::before,
+.parchment-detail {
+  display: none;
+}
+
+.parchment-greeting {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 400;
+  color: #a94c40;
+}
+
+.parchment-message {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.7;
+}
+
+.parchment-message p {
+  margin: 0 0 10px;
+}
+
+.parchment-signature {
+  margin: auto 0 0; /* auto pushes it to the bottom */
+  padding-top: 20px;
+  text-align: right;
+  white-space: pre-line;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #a94c40;
+}

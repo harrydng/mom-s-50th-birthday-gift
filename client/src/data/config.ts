@@ -2,13 +2,10 @@
 export const config = {
   pageTitle: 'Gửi mẹ',
   envelope: {
-    greeting: 'Mẹ ơi, có một món quà dành cho mẹ',
-    button: 'Mở thư',
+    skip: 'Bỏ qua →',
   },
   letters: {
     navLabel: 'Thư gửi mẹ',
-    prev: 'Trang trước',
-    next: 'Trang sau',
     openAlbum: 'Mở album kỷ niệm',
     close: 'Đóng thư',
   },
@@ -38,8 +35,8 @@ export const config = {
   },
   skip: {
     button: 'Bỏ qua ⏭',
-    warning: 'Nên ở lại đến cuối để trải nghiệm trọn vẹn món quà này nhé mẹ 💕',
-    stay: 'Ở lại xem tiếp',
-    leave: 'Vẫn bỏ qua',
+    warning: 'Nên ở lại đến cuối để trải nghiệm trọn vẹn món quà này nhé',
+    stay: 'xem tiếp',
+    leave: 'bỏ qua',
   },
 }

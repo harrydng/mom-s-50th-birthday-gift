@@ -1,5 +1,7 @@
 export interface Letter {
   id: string
+  /** Button label that opens this letter, e.g. "Con trai" */
+  tabLabel: string
   /** Small heading above the letter, e.g. "Một lời nhắn từ bố" */
   title: string
   paragraphs: string[]

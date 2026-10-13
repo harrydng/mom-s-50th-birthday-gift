@@ -1,7 +1,15 @@
 import type { Song } from '../types'
 
-// Plays top to bottom, then loops. Drop the mp3s in client/public/media/audio/.
+// Files are named song1, song2, ... in client/public/media/audio/ (mp3 or m4a).
+// Add one line per file, in play order; the playlist loops at the end.
+const song = (n: number, title: string, artist: string, ext: 'mp3' | 'm4a' = 'mp3'): Song => ({
+  title,
+  artist,
+  src: `/media/audio/song${n}.${ext}`,
+})
+
 export const playlist: Song[] = [
-  { title: 'Tên bài hát 1', artist: 'Ca sĩ', src: '/media/audio/song1.mp3' },
-  { title: 'Tên bài hát 2', artist: 'Ca sĩ', src: '/media/audio/song2.mp3' },
+  song(1, 'Ước Mơ Của Mẹ', 'Văn Mai Hương, Hứa Kim Tuyền'),
+  song(2, 'Cảm Ơn Và Xin Lỗi', 'Chillies', 'm4a'),
+  // song(3, 'Tên bài hát', 'Ca sĩ'),
 ]
