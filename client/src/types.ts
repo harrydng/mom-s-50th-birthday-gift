@@ -20,6 +20,8 @@ export interface Photo {
   /** Year or age label shown under the photo, e.g. "1976" */
   year: string
   stageId: LifeStage['id']
+  /** Optional heading on the message note */
+  title?: string
   message: string
 }
 

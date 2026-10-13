@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { photos } from '../../data/photos'
-import { PhotoImage } from './PhotoImage'
+import { stages } from '../../data/stages'
+import { PhotoMemory } from './PhotoMemory'
 import { VideoFinale } from './VideoFinale'
 
 interface Props {
@@ -37,28 +38,21 @@ export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
   }
 
   return (
-    <section className="flex w-full flex-1 flex-col items-center gap-4 pb-56 pt-48">
+    <section className="flex w-full flex-1 flex-col items-center gap-4 pb-72 pt-48">
       <div
         ref={trackRef}
         onScroll={onScroll}
         className="flex w-full max-w-6xl flex-1 snap-x snap-mandatory overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {photos.map((photo) => (
-          <article
-            key={photo.id}
-            className="flex w-full shrink-0 snap-center flex-col items-center justify-center gap-6 px-4 md:flex-row md:gap-12 md:px-10"
-          >
-            <figure className="m-0 -rotate-1 rounded-sm bg-white p-4 pb-3 shadow-2xl">
-              <PhotoImage
-                src={photo.src}
-                alt={photo.year}
-                className="block max-h-[55vh] max-w-full rounded-sm md:max-h-[65vh] md:max-w-[40vw]"
-              />
-              <figcaption className="handwritten mt-2 text-center text-3xl text-(--accent-dark)">{photo.year}</figcaption>
-            </figure>
-            <p className="max-w-md text-xl leading-relaxed text-(--ink) [text-shadow:0_0_12px_rgba(251,243,228,0.95)] md:text-2xl md:leading-loose">
-              {photo.message}
-            </p>
+          <article key={photo.id} className="flex w-full shrink-0 snap-center items-center justify-center px-2">
+            <PhotoMemory
+              src={photo.src}
+              year={String(photo.year)}
+              message={photo.message}
+              title={photo.title}
+              stage={stages.find((stage) => stage.id === photo.stageId)?.label}
+            />
           </article>
         ))}
         <article className="flex w-full shrink-0 snap-center items-center justify-center px-4">
