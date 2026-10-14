@@ -44,7 +44,7 @@ export function Timeline({ currentIndex, onSelect, onOpenVideo }: Props) {
         </h2>
       </div>
 
-      <div className="flex flex-1 items-center gap-8 overflow-x-auto pb-6 pl-6 pr-6 pt-4 md:gap-12 md:pl-20 md:pr-8">
+      <div className="flex flex-1 items-center gap-8 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-6 pl-6 pr-6 pt-4 md:gap-12 md:pl-20 md:pr-8">
         {stages.map((stage) => {
           const items = photos.map((p, i) => ({ p, i })).filter(({ p }) => p.stageId === stage.id)
           if (items.length === 0) return null
