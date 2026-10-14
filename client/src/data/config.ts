@@ -6,7 +6,7 @@ export const config = {
   },
   letters: {
     navLabel: 'Thư',
-    openAlbum: 'Mở album kỷ niệm',
+    openAlbum: 'Tiếp',
     close: 'Đóng thư',
   },
   music: {

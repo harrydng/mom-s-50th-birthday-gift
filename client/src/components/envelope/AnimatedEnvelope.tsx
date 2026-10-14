@@ -48,7 +48,6 @@ export function AnimatedEnvelope({ onStart, onOpen }: Props) {
           <span className="letter-rule" />
           <span className="letter-rule" />
           <span className="letter-rule short" />
-          <span className="letter-love">Với tất cả yêu thương</span>
         </span>
 
         <span className="keepsake-flap" />

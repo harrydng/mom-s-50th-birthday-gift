@@ -34,18 +34,18 @@ export function AlbumNav({ index, onChange }: Props) {
   ]
 
   return (
-    <div className="flex flex-col items-center gap-2 md:gap-5">
+    <div className="flex flex-col items-center gap-2 md:gap-2">
       <div className="flex max-w-[92vw] items-center gap-2 overflow-x-auto px-3 py-1 md:gap-3 md:px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {sections.map(({ id, label, target, active }, n) => {
             return (
               <Fragment key={id}>
                 {n > 0 && (
-                  <span className="shrink-0 select-none text-sm text-(--ink-soft)/60 md:text-base [text-shadow:0_0_10px_rgba(251,243,228,0.9)]" aria-hidden>-----</span>
+                  <span className="shrink-0 select-none text-sm text-(--ink-soft)/60 md:text-base [text-shadow:0_0_10px_rgba(251,243,228,0.9)]" aria-hidden>---</span>
                 )}
                 <button
                   onClick={() => onChange(target)}
                   aria-current={active}
-                  className={`handwritten shrink-0 cursor-pointer whitespace-nowrap py-1 text-lg transition-all md:text-2xl duration-300 ${
+                  className={`handwritten shrink-0 cursor-pointer whitespace-nowrap py-1 text-lg transition-all md:text-xl lg:text-2xl duration-300 ${
                     active
                       ? 'text-(--accent-dark) [text-shadow:0_0_6px_rgba(226,85,74,0.3),0_0_18px_rgba(192,85,74,0.6)]'
                       : 'text-(--ink-soft) [text-shadow:0_0_10px_rgba(251,243,228,0.2)]'

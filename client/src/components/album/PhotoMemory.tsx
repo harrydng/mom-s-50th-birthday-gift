@@ -25,14 +25,16 @@ export function PhotoMemory({
 
         <PhotoImage
           src={src}
-          alt={alt ?? `Kỷ niệm năm ${year}`}
+          alt={alt ?? (year ? `Kỷ niệm năm ${year}` : 'Kỷ niệm')}
           className="memory-photo-image"
           fallbackClassName="memory-photo-fallback"
         />
 
-        <figcaption className="handwritten">
-          {year}
-        </figcaption>
+        {year && (
+          <figcaption className="handwritten">
+            {year}
+          </figcaption>
+        )}
       </figure>
 
       <div className="memory-note-wrap">
@@ -40,7 +42,7 @@ export function PhotoMemory({
           <span className="memory-note-tape" aria-hidden="true" />
 
           <p className="memory-note-label">
-            {stage ? `${stage} · ${year}` : year}
+            {[stage, year].filter(Boolean).join(' · ')}
           </p>
 
           <h2 className="handwritten memory-note-title">
@@ -52,7 +54,7 @@ export function PhotoMemory({
           <p className="memory-note-message">{message}</p>
 
           <div className="memory-note-footer">
-            <span className="handwritten">Gửi mẹ, với yêu thương</span>
+            <span className="handwritten">Gửi mẹ</span>
 
             <svg
               viewBox="0 0 32 32"

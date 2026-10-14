@@ -35,6 +35,11 @@ function App() {
     if (i >= photos.length) setFree(true)
   }
 
+  const openVideo = () => {
+    changeIndex(photos.length)
+    setView('album')
+  }
+
   const skip = () => {
     setSkipAsked(false)
     setLetterOpen(false)
@@ -55,14 +60,7 @@ function App() {
             : undefined
         }
         onSkip={envelopeOpened && !free ? () => setSkipAsked(true) : undefined}
-        onOpenVideo={
-          view === 'timeline'
-            ? () => {
-                changeIndex(photos.length)
-                setView('album')
-              }
-            : undefined
-        }
+        onOpenVideo={view === 'timeline' ? openVideo : undefined}
       />
 
       <main>
@@ -90,6 +88,7 @@ function App() {
         {view === 'timeline' && (
           <Timeline
             currentIndex={albumIndex}
+            onOpenVideo={openVideo}
             onSelect={(i) => {
               setAlbumIndex(i)
               setView('album')

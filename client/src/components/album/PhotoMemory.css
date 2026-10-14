@@ -3,7 +3,8 @@
   --spread-width: 1000px;
   --spread-x: 0px;
   --spread-y: 0px;
-  --photo-width: 380px;
+  --photo-width: 2000px; /* the photo's maximum width */
+  --photo-height: clamp(500px, 32vw, 390px); /* the photo's maximum height */
 
   width: min(var(--spread-width), 100%);
   margin: auto;
@@ -19,7 +20,9 @@
 /* Polaroid */
 .memory-photo {
   position: relative;
-  width: min(var(--photo-width), 100%);
+  /* The white frame hugs the photo: it is exactly as wide as the picture */
+  width: fit-content;
+  max-width: 100%;
   margin: auto;
   padding: 14px 14px 8px;
   background: #fffdf8;
@@ -33,15 +36,17 @@
 
 .memory-photo-image {
   display: block;
-  width: 100%;
-  height: clamp(260px, 32vw, 390px);
-  object-fit: contain;
-  background: #eee2cb;
+  /* Keep the picture's own proportions; the limits above only cap its size */
+  width: auto;
+  height: auto;
+  max-width: min(var(--photo-width), 100%);
+  max-height: var(--photo-height);
 }
 
+/* Shown only when a photo file is missing */
 .memory-photo-fallback {
-  width: 100%;
-  height: clamp(260px, 32vw, 390px);
+  width: min(var(--photo-width), 100%);
+  height: var(--photo-height);
   display: grid;
   place-items: center;
   background: #eee2cb;
@@ -185,9 +190,9 @@
   }
 
   /* Shorter photo so the note below is not pushed off the screen */
-  .memory-photo-image,
-  .memory-photo-fallback {
-    height: clamp(200px, 55vw, 280px);
+  .memory-spread {
+    --photo-width: 78vw;
+    --photo-height: clamp(200px, 55vw, 280px);
   }
 
   .memory-photo figcaption {
@@ -195,7 +200,6 @@
   }
 
   .memory-photo {
-    width: min(var(--photo-width), 85%);
     transform: rotate(-2deg);
   }
 

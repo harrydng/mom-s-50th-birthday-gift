@@ -37,7 +37,8 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
           <ParchmentLetter key={letter.id} letter={letter} />
         </div>
 
-        <div className="mt-1 flex flex-wrap items-center justify-center gap-2 px-3 py-2 md:gap-3">
+        <div className="mt-1 flex w-[min(var(--letter-width),94vw)] items-center justify-between gap-2 px-2 py-2">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3">
           {letters.map((l, i) => (
             <button
               key={l.id}
@@ -48,6 +49,7 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
               {l.tabLabel}
             </button>
           ))}
+          </div>
           <button className="btn" onClick={onFinish}>{finishLabel}</button>
         </div>
       </div>

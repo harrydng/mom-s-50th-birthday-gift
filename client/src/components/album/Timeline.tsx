@@ -8,9 +8,11 @@ import { PhotoImage } from './PhotoImage'
 interface Props {
   currentIndex: number
   onSelect: (index: number) => void
+  /** Opens the album on the birthday-video slide. */
+  onOpenVideo: () => void
 }
 
-export function Timeline({ currentIndex, onSelect }: Props) {
+export function Timeline({ currentIndex, onSelect, onOpenVideo }: Props) {
   // Every life stage starts expanded; tap its heading to fold it away.
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const toggle = (id: string) =>
@@ -76,6 +78,24 @@ export function Timeline({ currentIndex, onSelect }: Props) {
             </div>
           )
         })}
+
+        {/* Last block: the birthday video, so she can open it straight from the timeline. */}
+        <div className="shrink-0 pr-4 md:pr-12">
+          <h3 className="handwritten mb-3 border-b-2 border-dashed border-(--ink-soft)/40 pb-1 text-2xl whitespace-nowrap text-(--ink) md:text-3xl [text-shadow:0_0_10px_rgba(251,243,228,0.9)]">
+            {config.album.finalSection}
+          </h3>
+          <button
+            onClick={onOpenVideo}
+            aria-label={config.video.navLabel}
+            className="relative h-fit cursor-pointer rounded-sm bg-white p-2 pb-1 shadow-xl transition hover:-translate-y-1 hover:rotate-2"
+          >
+            <PhotoImage src={config.video.poster} alt="" className="block size-32 object-cover md:size-44" fallbackClassName="size-32 md:size-44" />
+            <span className="absolute left-2 top-2 flex size-32 items-center justify-center bg-black/10 md:size-44">
+              <img src="/video.png" alt="" className="size-16 object-contain drop-shadow-lg md:size-20" />
+            </span>
+            <span className="handwritten block text-center text-xl text-(--accent-dark)">{config.video.navLabel}</span>
+          </button>
+        </div>
       </div>
     </section>
   )

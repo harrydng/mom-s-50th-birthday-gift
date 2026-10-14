@@ -1,6 +1,10 @@
+/* Shared with the button bar under the letter (LetterModal) so both line up. */
+:root {
+  --letter-width: 800px;
+}
+
 .parchment-letter {
   /* SIZE AND POSITION */
-  --letter-width: 800px;
   --letter-x: 0px;
   --letter-y: -20px;
 
