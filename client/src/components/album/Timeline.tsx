@@ -37,7 +37,7 @@ export function Timeline({ currentIndex, onSelect, onOpenVideo }: Props) {
   )
 
   return (
-    <section className="flex w-full flex-1 flex-col gap-1 pb-10 pt-36 md:pb-40 md:pt-48">
+    <section className="flex w-full flex-1 flex-col gap-1 animate-[fade-in_1.2s_ease_both] pb-10 pt-36 md:pb-40 md:pt-48">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center pt-2 md:pt-6">
         <h2 className="handwritten col-start-2 mt-2 text-center text-5xl text-(--accent-dark) sm:text-7xl md:translate-y-5 md:text-8xl">
           {config.album.timelineTitle}

@@ -24,24 +24,24 @@ const TODO = 'To do'
 // year is left blank for now: it is hidden everywhere until you fill it in.
 export const photos: Photo[] = [
   ...stagePhotos('01_tuoi_tho', [
-    { file: 'p0_hoibe.jpg', year: '', message: TODO },
-    { file: 'p1_hoibe.jpeg', year: '', message: TODO },
-    { file: 'p2_hoibe.jpeg', year: '', message: TODO },
+    { file: 'p0_hoibe.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p1_hoibe.jpeg', year: '', title: TODO, message: TODO },
+    { file: 'p2_hoibe.jpeg', year: '', title: TODO, message: TODO },
   ]),
   ...stagePhotos('02_thanh_xuan', [
-    { file: 'p0_thanhxuan.jpg', year: '', message: TODO },
-    { file: 'p1_thanhxuan.jpg', year: '', message: TODO },
+    { file: 'p0_thanhxuan.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p1_thanhxuan.jpg', year: '', title: TODO, message: TODO },
   ]),
   ...stagePhotos('03_marriage', [
-    { file: 'p0_cuoi.jpg', year: '', message: TODO },
-    { file: 'p1_cuoi.jpg', year: '', message: TODO },
-    { file: 'p2_cuoi.jpg', year: '', message: TODO },
-    { file: 'p4_cuoi.jpg', year: '', message: TODO },
+    { file: 'p0_cuoi.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p1_cuoi.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p2_cuoi.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p4_cuoi.jpg', year: '', title: TODO, message: TODO },
   ]),
   // 04_adventures: no photos yet
   ...stagePhotos('05_her_kids', [
-    { file: 'p0_caccon.jpg', year: '', message: TODO },
-    { file: 'p1_caccon.jpg', year: '', message: TODO },
+    { file: 'p0_caccon.jpg', year: '', title: TODO, message: TODO },
+    { file: 'p1_caccon.jpg', year: '', title: TODO, message: TODO },
   ]),
   // 06_love_that_stays, 07_little_ones, 08_you_now: no photos yet
 ]

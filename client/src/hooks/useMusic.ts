@@ -3,16 +3,16 @@ import type { Song } from '../types'
 
 /**
  * Playlist player. `wanted` is the user's play/pause intent; `suspended` is a
- * temporary pause (used while the birthday video plays). Playback is attempted
- * as soon as the page loads; browsers usually block that until the visitor
- * interacts, so if it's blocked we retry on their first tap/click/keypress.
+ * temporary pause (used while the birthday video plays). Nothing plays on page
+ * load: music starts when `start()` is called from the envelope tap (which also
+ * satisfies the browser's "needs a user gesture" rule).
  */
 export function useMusic(playlist: Song[], volume: number) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const loadedSrc = useRef<string | null>(null)
   const shouldPlay = useRef(false)
   const [trackIndex, setTrackIndex] = useState(0)
-  const [wanted, setWanted] = useState(true)
+  const [wanted, setWanted] = useState(false)
   const [suspended, setSuspended] = useState(false)
   const [muted, setMuted] = useState(false)
   const [blocked, setBlocked] = useState(false)
@@ -103,7 +103,8 @@ export function useMusic(playlist: Song[], volume: number) {
     // Called from the envelope click: play inside the gesture itself.
     start: useCallback(() => {
       setWanted(true)
-      if (shouldPlay.current) audioRef.current?.play().catch(() => {})
+      shouldPlay.current = true
+      audioRef.current?.play().catch(() => {})
     }, []),
     togglePlay: useCallback(() => setWanted((w) => !w), []),
     toggleMute: useCallback(() => setMuted((m) => !m), []),

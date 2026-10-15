@@ -38,7 +38,7 @@ export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
   }
 
   return (
-    <section className="flex w-full flex-1 flex-col items-center gap-4 pb-32 pt-36 md:pb-72 md:pt-48">
+    <section className="flex w-full flex-1 flex-col items-center gap-4 animate-[fade-in_1.2s_ease_both] pb-32 pt-36 md:pb-72 md:pt-48">
       <div
         ref={trackRef}
         onScroll={onScroll}

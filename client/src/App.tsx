@@ -11,6 +11,11 @@ import { playlist } from './data/playlist'
 import { useMusic } from './hooks/useMusic'
 import type { View } from './types'
 
+// How long a screen fades out (keep in step with fade-out_0.5s on <main>).
+const FADE_MS = 500
+// The letter popup fades out a little slower (keep in step with LetterModal).
+const LETTER_FADE_MS = 600
+
 function App() {
   const [view, setView] = useState<View>('envelope')
   const [letterOpen, setLetterOpen] = useState(false)
@@ -21,6 +26,8 @@ function App() {
   // skipping unlocks free exploration (timeline, jump to video).
   const [free, setFree] = useState(false)
   const [skipAsked, setSkipAsked] = useState(false)
+  // True while the current screen is fading out, just before the next one fades in.
+  const [fading, setFading] = useState(false)
   const music = useMusic(playlist, config.music.volume)
 
   const envelopeOpened = view !== 'envelope'
@@ -35,17 +42,29 @@ function App() {
     if (i >= photos.length) setFree(true)
   }
 
-  const openVideo = () => {
-    changeIndex(photos.length)
-    setView('album')
+  // Fade the current screen out, then swap in the next one (which fades in).
+  const transition = (apply: () => void, ms = FADE_MS) => {
+    setFading(true)
+    window.setTimeout(() => {
+      apply()
+      setFading(false)
+    }, ms)
   }
+
+  const openVideo = () =>
+    transition(() => {
+      changeIndex(photos.length)
+      setView('album')
+    })
 
   const skip = () => {
     setSkipAsked(false)
-    setLetterOpen(false)
-    setIntroDone(true)
-    setFree(true)
-    setView('timeline')
+    transition(() => {
+      setLetterOpen(false)
+      setIntroDone(true)
+      setFree(true)
+      setView('timeline')
+    }, LETTER_FADE_MS)
   }
 
   return (
@@ -56,14 +75,14 @@ function App() {
         album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex } : undefined}
         viewToggle={
           free && introDone && envelopeOpened
-            ? { view, onToggle: () => setView(view === 'album' ? 'timeline' : 'album') }
+            ? { view, onToggle: () => transition(() => setView(view === 'album' ? 'timeline' : 'album')) }
             : undefined
         }
         onSkip={envelopeOpened && !free ? () => setSkipAsked(true) : undefined}
         onOpenVideo={view === 'timeline' ? openVideo : undefined}
       />
 
-      <main>
+      <main className={fading ? 'animate-[fade-out_0.5s_ease_both]' : ''}>
         {view === 'envelope' && (
           <EnvelopeScreen
             onOpenClick={music.start}
@@ -89,10 +108,12 @@ function App() {
           <Timeline
             currentIndex={albumIndex}
             onOpenVideo={openVideo}
-            onSelect={(i) => {
-              setAlbumIndex(i)
-              setView('album')
-            }}
+            onSelect={(i) =>
+              transition(() => {
+                setAlbumIndex(i)
+                setView('album')
+              })
+            }
           />
         )}
       </main>
@@ -104,6 +125,7 @@ function App() {
           finishLabel={introDone ? config.letters.close : config.letters.openAlbum}
           onFinish={openAlbum}
           onClose={introDone ? () => setLetterOpen(false) : undefined}
+          fadeOut={fading}
         />
       )}
     </div>

@@ -9,15 +9,30 @@ interface Props {
   onFinish: () => void
   /** Omit to hide the × (first read, before the album is unlocked). */
   onClose?: () => void
+  /** Set by the parent to fade the letter out (e.g. when skipping ahead). */
+  fadeOut?: boolean
 }
 
-export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
+/** How long the letter takes to fade out (keep in step with fade-out_0.6s below). */
+const LEAVE_MS = 600
+
+export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false }: Props) {
   const [page, setPage] = useState(0)
+  const [leaving, setLeaving] = useState(false)
   const letter = letters[page]
+
+  // Fade the letter away first, then hand over, so the album can fade in softly.
+  const leave = (done: () => void) => {
+    if (leaving) return
+    setLeaving(true)
+    window.setTimeout(done, LEAVE_MS)
+  }
 
   return (
     <div
-      className="fixed inset-0 z-20 flex items-center justify-center bg-black/10 backdrop-blur-[3px] animate-[fade-in_0.4s_ease_both] px-3 pb-3 pt-28 md:pt-40"
+      className={`fixed inset-0 z-20 flex items-center justify-center bg-black/10 backdrop-blur-[3px] px-3 pb-3 pt-28 md:pt-40 ${
+        leaving || fadeOut ? 'pointer-events-none animate-[fade-out_0.6s_ease_both]' : 'animate-[fade-in_0.4s_ease_both]'
+      }`}
       role="dialog"
       aria-modal="true"
       aria-label={config.letters.navLabel}
@@ -26,7 +41,7 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
         {onClose && (
           <button
             className="absolute right-3 top-1 z-10 cursor-pointer text-4xl text-(--ink-soft)"
-            onClick={onClose}
+            onClick={() => leave(onClose)}
             aria-label={config.letters.close}
           >
             ×
@@ -50,7 +65,7 @@ export function LetterModal({ finishLabel, onFinish, onClose }: Props) {
             </button>
           ))}
           </div>
-          <button className="btn" onClick={onFinish}>{finishLabel}</button>
+          <button className="btn" onClick={() => leave(onFinish)}>{finishLabel}</button>
         </div>
       </div>
     </div>
