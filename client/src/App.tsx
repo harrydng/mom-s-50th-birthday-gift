@@ -74,11 +74,12 @@ function App() {
         onOpenLetter={envelopeOpened ? () => setLetterOpen(true) : undefined}
         album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex } : undefined}
         viewToggle={
-          free && introDone && envelopeOpened
-            ? { view, onToggle: () => transition(() => setView(view === 'album' ? 'timeline' : 'album')) }
-            : undefined
+          !envelopeOpened
+            ? undefined
+            : free
+              ? { view, onToggle: () => transition(() => setView(view === 'album' ? 'timeline' : 'album')) }
+              : { view: 'skip', onToggle: () => setSkipAsked(true) } // asks first, see SkipDialog
         }
-        onSkip={envelopeOpened && !free ? () => setSkipAsked(true) : undefined}
         onOpenVideo={view === 'timeline' ? openVideo : undefined}
       />
 

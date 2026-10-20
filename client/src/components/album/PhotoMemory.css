@@ -1,16 +1,19 @@
 .memory-spread {
   /* ADJUST SIZE AND POSITION HERE */
-  --spread-width: 1000px;
+  --spread-width: 1200px; /* whole area: photo + note. Raise it if you raise the photo size */
+  --note-width: 420px; /* the message note keeps this width, so only the photo grows */
   --spread-x: 0px;
   --spread-y: 0px;
-  --photo-width: 2000px; /* the photo's maximum width */
-  --photo-height: clamp(500px, 32vw, 390px); /* the photo's maximum height */
+  /* PHOTO SIZE: one box that every photo fits inside, so horizontal and vertical
+     photos end up the same visual size (a wide photo fills the width, a tall one
+     fills the height). Raise it for bigger photos. */
+  --photo-size: clamp(300px, 40vw, 520px);
 
   width: min(var(--spread-width), 100%);
   margin: auto;
   padding: 35px 24px;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) var(--note-width);
   align-items: center;
   gap: clamp(35px, 5vw, 75px);
 
@@ -39,14 +42,14 @@
   /* Keep the picture's own proportions; the limits above only cap its size */
   width: auto;
   height: auto;
-  max-width: min(var(--photo-width), 100%);
-  max-height: var(--photo-height);
+  max-width: min(var(--photo-size), 100%);
+  max-height: var(--photo-size);
 }
 
 /* Shown only when a photo file is missing */
 .memory-photo-fallback {
-  width: min(var(--photo-width), 100%);
-  height: var(--photo-height);
+  width: min(calc(var(--photo-size) * 0.8), 100%);
+  height: var(--photo-size);
   display: grid;
   place-items: center;
   background: #eee2cb;
@@ -191,8 +194,7 @@
 
   /* Shorter photo so the note below is not pushed off the screen */
   .memory-spread {
-    --photo-width: 78vw;
-    --photo-height: clamp(200px, 55vw, 280px);
+    --photo-size: clamp(220px, 72vw, 300px);
   }
 
   .memory-photo figcaption {

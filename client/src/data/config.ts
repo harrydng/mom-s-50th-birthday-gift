@@ -1,6 +1,6 @@
 // Site-wide text and media paths. Put files in client/public/media/.
 export const config = {
-  pageTitle: 'Gửi mẹ',
+  pageTitle: 'Best Mom Ever',
   envelope: {
     skip: 'Bỏ qua →',
   },

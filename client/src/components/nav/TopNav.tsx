@@ -3,7 +3,7 @@ import type { MusicControls } from '../../hooks/useMusic'
 import { AlbumNav } from '../album/AlbumNav'
 import { MobileMenu, type MenuItem } from './MobileMenu'
 import { MusicPlayer } from './MusicPlayer'
-import { ViewToggle } from '../album/ViewToggle'
+import { ViewToggle, type ToggleMode } from '../album/ViewToggle'
 
 interface Props {
   music: MusicControls
@@ -11,15 +11,13 @@ interface Props {
   onOpenLetter?: () => void
   /** Album position + setter; shown above the bottom buttons while browsing the album. */
   album?: { index: number; onChange: (index: number) => void }
-  /** Album <-> timeline switch, shown under the music player once unlocked. */
-  viewToggle?: { view: 'album' | 'timeline'; onToggle: () => void }
-  /** Shown beside the music player while the guided experience is running. */
-  onSkip?: () => void
+  /** The single button under the music player (skip while guided, then album <-> timeline). */
+  viewToggle?: { view: ToggleMode; onToggle: () => void }
   /** Shown beside the envelope (timeline view only) to jump to the video. */
   onOpenVideo?: () => void
 }
 
-export function TopNav({ music, onOpenLetter, album, viewToggle, onSkip, onOpenVideo }: Props) {
+export function TopNav({ music, onOpenLetter, album, viewToggle, onOpenVideo }: Props) {
   // On phones these two live in a top-left dropdown instead of the bottom row.
   const menuItems: MenuItem[] = [
     ...(onOpenLetter ? [{ label: config.letters.navLabel, icon: '/envelop.png', onClick: onOpenLetter }] : []),
@@ -33,11 +31,6 @@ export function TopNav({ music, onOpenLetter, album, viewToggle, onSkip, onOpenV
         <MobileMenu items={menuItems} />
         <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
           <MusicPlayer music={music} />
-          {onSkip && (
-            <button className="btn btn-small whitespace-nowrap shadow-lg" onClick={onSkip}>
-              {config.skip.button}
-            </button>
-          )}
         </div>
         {viewToggle && <ViewToggle view={viewToggle.view} onToggle={viewToggle.onToggle} />}
       </nav>
