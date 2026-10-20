@@ -184,6 +184,26 @@
   height: 25px;
 }
 
+/* Horizontal photos: the photo is scaled up (see --landscape-scale) and the note
+   moves underneath it, since there is no room beside a photo that wide. */
+.memory-spread {
+  --landscape-scale: 1.6; /* 1 = same box as --photo-size, 2 = twice as big */
+}
+
+.memory-spread.is-landscape {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.is-landscape .memory-photo-image {
+  max-width: min(calc(var(--photo-size) * var(--landscape-scale)), 100%);
+  max-height: calc(var(--photo-size) * var(--landscape-scale));
+}
+
+.is-landscape .memory-note-wrap {
+  width: min(calc(var(--note-width) * 1.5), 100%);
+}
+
 /* Phone layout */
 @media (max-width: 700px) {
   .memory-spread {

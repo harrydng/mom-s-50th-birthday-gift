@@ -22,6 +22,10 @@ export const config = {
   album: {
     prev: '← Trước',
     next: 'Tiếp →',
+    autoPlay: 'Tự động chuyển',
+    autoPause: 'Dừng tự động',
+    // How long each photo stays up in auto mode, in milliseconds (5000 = 5 seconds).
+    autoIntervalMs: 5000,
     finalSection: 'Lời nhắn cuối',
     timelineButton: 'Xem dòng thời gian',
     backToAlbum: 'Quay lại album',

@@ -9,6 +9,7 @@ export const letters: Letter[] = [
     paragraphs: [
       'Chúc mừng sinh nhật 50 tuổi của mẹ!',
       'lời nhắn',
+      'Con muốn cho mẹ xem những người thân xung quanh luôn yêu quý mẹ như nào',
       'Con yêu mẹ rất nhiều.',
     ],
     signature: 'Con của mẹ, Harry',

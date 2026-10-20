@@ -25,6 +25,8 @@ export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
   useEffect(() => {
     const el = trackRef.current
     if (!el) return
+    // A clip left playing on the slide we just moved away from stops.
+    el.querySelectorAll('video').forEach((v) => v.pause())
     if (Math.round(el.scrollLeft / el.clientWidth) !== index) {
       el.scrollTo({ left: index * el.clientWidth, behavior: 'smooth' })
     }
@@ -52,6 +54,7 @@ export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
               message={photo.message}
               title={photo.title}
               stage={stages.find((stage) => stage.id === photo.stageId)?.label}
+              onPlayingChange={onVideoPlayingChange}
             />
           </article>
         ))}

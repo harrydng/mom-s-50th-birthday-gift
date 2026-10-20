@@ -10,7 +10,7 @@ interface Props {
   /** Omit on the envelope screen: there is no letter to reopen yet. */
   onOpenLetter?: () => void
   /** Album position + setter; shown above the bottom buttons while browsing the album. */
-  album?: { index: number; onChange: (index: number) => void }
+  album?: { index: number; onChange: (index: number) => void; holdAuto?: boolean }
   /** The single button under the music player (skip while guided, then album <-> timeline). */
   viewToggle?: { view: ToggleMode; onToggle: () => void }
   /** Shown beside the envelope (timeline view only) to jump to the video. */
@@ -38,7 +38,7 @@ export function TopNav({ music, onOpenLetter, album, viewToggle, onOpenVideo }: 
       <div className="pointer-events-none fixed inset-x-0 bottom-2 z-10 flex flex-col items-center gap-1 md:bottom-4 md:gap-2">
         {album && (
           <div className="pointer-events-auto">
-            <AlbumNav index={album.index} onChange={album.onChange} />
+            <AlbumNav index={album.index} onChange={album.onChange} holdAuto={album.holdAuto} />
           </div>
         )}
         <div className="hidden items-center justify-center gap-4 md:flex">

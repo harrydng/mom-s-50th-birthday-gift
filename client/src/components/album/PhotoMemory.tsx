@@ -8,6 +8,8 @@ interface Props {
   title?: string
   stage?: string
   alt?: string
+  /** For video clips: true while playing. */
+  onPlayingChange?: (playing: boolean) => void
 }
 
 export function PhotoMemory({
@@ -17,6 +19,7 @@ export function PhotoMemory({
   title,
   stage,
   alt,
+  onPlayingChange,
 }: Props) {
   return (
     <div className="memory-spread">
@@ -28,6 +31,8 @@ export function PhotoMemory({
           alt={alt ?? (year ? `Kỷ niệm năm ${year}` : 'Kỷ niệm')}
           className="memory-photo-image"
           fallbackClassName="memory-photo-fallback"
+          playable
+          onPlayingChange={onPlayingChange}
         />
 
         {year && (

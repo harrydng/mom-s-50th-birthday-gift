@@ -29,6 +29,12 @@ function App() {
   // True while the current screen is fading out, just before the next one fades in.
   const [fading, setFading] = useState(false)
   const music = useMusic(playlist, config.music.volume)
+  // A clip is playing: the music pauses and auto mode waits for it to finish.
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const onVideoPlayingChange = (playing: boolean) => {
+    setVideoPlaying(playing)
+    music.setSuspended(playing)
+  }
 
   const envelopeOpened = view !== 'envelope'
 
@@ -72,7 +78,7 @@ function App() {
       <TopNav
         music={music}
         onOpenLetter={envelopeOpened ? () => setLetterOpen(true) : undefined}
-        album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex } : undefined}
+        album={view === 'album' && introDone ? { index: albumIndex, onChange: changeIndex, holdAuto: videoPlaying } : undefined}
         viewToggle={
           !envelopeOpened
             ? undefined
@@ -102,7 +108,7 @@ function App() {
           <Album
             index={albumIndex}
             onIndexChange={changeIndex}
-            onVideoPlayingChange={music.setSuspended}
+            onVideoPlayingChange={onVideoPlayingChange}
           />
         )}
         {view === 'timeline' && (
