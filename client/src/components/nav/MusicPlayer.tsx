@@ -1,17 +1,18 @@
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import type { MusicControls } from '../../hooks/useMusic'
 
 const iconButton =
   'flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-lg text-(--accent-dark) transition hover:bg-(--accent)/10 disabled:opacity-40'
 
 export function MusicPlayer({ music }: { music: MusicControls }) {
+  const config = useConfig()
   const { track, playing } = music
   const label = track
     ? `${track.title} — ${track.artist}`
     : config.music.nothingPlaying
 
   return (
-    <div className="flex w-[min(92vw,16rem)] items-center gap-2 rounded-xl border border-dashed border-(--accent)/30 bg-[#fff8ef]/95 px-3 py-2 shadow-sm">
+    <div className="flex w-[min(calc(100vw-11rem),16rem)] md:w-64 items-center gap-2 rounded-xl border border-dashed border-(--accent)/30 bg-[#fff8ef]/95 px-3 py-2 shadow-sm">
       <p
         className="min-w-0 flex-1 truncate text-xs text-(--ink)"
         title={label}

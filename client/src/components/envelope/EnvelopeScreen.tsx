@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import { AnimatedEnvelope } from './AnimatedEnvelope'
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
 }
 
 export function EnvelopeScreen({ onOpened, onOpenClick, onSkip }: Props) {
+  const config = useConfig()
   const [opening, setOpening] = useState(false)
 
   return (

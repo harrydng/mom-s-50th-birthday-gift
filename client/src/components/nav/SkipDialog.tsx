@@ -1,4 +1,4 @@
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 
 interface Props {
   onStay: () => void
@@ -6,6 +6,7 @@ interface Props {
 }
 
 export function SkipDialog({ onStay, onLeave }: Props) {
+  const config = useConfig()
   return (
     <div
       className="fixed inset-0 z-40 flex items-center justify-center bg-black/30 p-4 backdrop-blur-sm animate-[fade-in_0.3s_ease_both]"

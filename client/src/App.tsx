@@ -5,7 +5,7 @@ import { LetterModal } from './components/letter/LetterModal'
 import { SkipDialog } from './components/nav/SkipDialog'
 import { Timeline } from './components/album/Timeline'
 import { TopNav } from './components/nav/TopNav'
-import { config } from './data/config'
+import { useConfig } from './i18n'
 import { photos } from './data/photos'
 import { playlist } from './data/playlist'
 import { useMusic } from './hooks/useMusic'
@@ -17,6 +17,7 @@ const FADE_MS = 500
 const LETTER_FADE_MS = 600
 
 function App() {
+  const config = useConfig()
   const [view, setView] = useState<View>('envelope')
   const [letterOpen, setLetterOpen] = useState(false)
   // The letter and the video ask for the password until it has been entered once (in either place).

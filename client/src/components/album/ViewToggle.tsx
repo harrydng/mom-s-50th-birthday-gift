@@ -1,4 +1,4 @@
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 
 interface Props {
   /** skip = guided flow (asks before skipping); album/timeline = free exploration */
@@ -10,6 +10,7 @@ interface Props {
 export type ToggleMode = 'skip' | 'album' | 'timeline'
 
 export function ViewToggle({ view, onToggle }: Props) {
+  const config = useConfig()
   return (
     <button className="btn btn-small shadow-lg" onClick={onToggle}>
       {view === 'skip' ? config.skip.button : view === 'album' ? config.album.timelineButton : config.album.backToAlbum}

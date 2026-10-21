@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import { photos } from '../../data/photos'
 import { stages } from '../../data/stages'
+import { useT } from '../../i18n'
 import { PhotoMemory } from './PhotoMemory'
 import { VideoFinale } from './VideoFinale'
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export function Album({ index, onIndexChange, onVideoPlayingChange, videoUnlocked, onUnlock }: Props) {
+  const t = useT()
   const trackRef = useRef<HTMLDivElement>(null)
 
   // Jump straight to the remembered slide when the album (re)appears.
@@ -55,8 +57,8 @@ export function Album({ index, onIndexChange, onVideoPlayingChange, videoUnlocke
               src={photo.src}
               year={String(photo.year)}
               message={photo.message}
-              title={photo.title}
-              stage={stages.find((stage) => stage.id === photo.stageId)?.label}
+              title={photo.title && t(photo.title)}
+              stage={t(stages.find((stage) => stage.id === photo.stageId)?.label ?? '')}
               onPlayingChange={onVideoPlayingChange}
             />
           </article>

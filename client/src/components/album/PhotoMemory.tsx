@@ -1,3 +1,4 @@
+import { useConfig } from '../../i18n'
 import { PhotoImage } from './PhotoImage'
 import './PhotoMemory.css'
 
@@ -21,6 +22,7 @@ export function PhotoMemory({
   alt,
   onPlayingChange,
 }: Props) {
+  const config = useConfig()
   return (
     <div className="memory-spread">
       <figure className="memory-photo">
@@ -28,7 +30,7 @@ export function PhotoMemory({
 
         <PhotoImage
           src={src}
-          alt={alt ?? (year ? `Kỷ niệm năm ${year}` : 'Kỷ niệm')}
+          alt={alt ?? (year ? `${config.memory.altWithYear} ${year}` : config.memory.defaultTitle)}
           className="memory-photo-image"
           fallbackClassName="memory-photo-fallback"
           playable
@@ -51,7 +53,7 @@ export function PhotoMemory({
           </p>
 
           <h2 className="handwritten memory-note-title">
-            {title || 'Kỷ niệm'}
+            {title || config.memory.defaultTitle}
           </h2>
 
           <div className="memory-note-divider" aria-hidden="true" />
@@ -59,7 +61,7 @@ export function PhotoMemory({
           <p className="memory-note-message">{message}</p>
 
           <div className="memory-note-footer">
-            <span className="handwritten">Gửi mẹ</span>
+            <span className="handwritten">{config.memory.footer}</span>
 
             <svg
               viewBox="0 0 32 32"

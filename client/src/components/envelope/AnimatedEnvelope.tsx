@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useConfig } from '../../i18n'
 import './AnimatedEnvelope.css'
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export function AnimatedEnvelope({ onStart, onOpen }: Props) {
+  const config = useConfig()
   const [opening, setOpening] = useState(false)
   const started = useRef(false)
   const completed = useRef(false)
@@ -27,7 +29,7 @@ export function AnimatedEnvelope({ onStart, onOpen }: Props) {
         className={`keepsake-envelope ${opening ? 'is-opening' : ''}`}
         onClick={open}
         disabled={opening}
-        aria-label="Mở thư gửi mẹ"
+        aria-label={config.envelope.openLabel}
       >
         <span className="keepsake-back" />
 
@@ -44,7 +46,7 @@ export function AnimatedEnvelope({ onStart, onOpen }: Props) {
             onOpen()
           }}
         >
-          <span className="handwritten">Gửi mẹ,</span>
+          <span className="handwritten">{config.envelope.greeting}</span>
           <span className="letter-rule" />
           <span className="letter-rule" />
           <span className="letter-rule short" />

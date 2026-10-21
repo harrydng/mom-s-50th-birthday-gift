@@ -1,8 +1,11 @@
 // Site-wide text and media paths. Put files in client/public/media/.
+// English versions of the text live in config.en.ts.
 export const config = {
   pageTitle: 'Best Mom Ever',
   envelope: {
     skip: 'Bỏ qua →',
+    openLabel: 'Mở thư gửi mẹ',
+    greeting: 'Gửi mẹ,',
   },
   letters: {
     navLabel: 'Thư',
@@ -42,14 +45,22 @@ export const config = {
   video: {
     intro: 'Và đây là lời chúc dành cho mẹ hôm nay…',
     playLabel: '▶ Phát video',
-    src: '/media/video/happy-birthday.mp4',
+    src: '/media/video/the_real_one.mp4',
     poster: '/media/video/poster.jpg',
     navLabel: 'Video',
     lockTitle: 'Video đang được khoá',
     unlock: 'Mở video',
   },
+  memory: {
+    defaultTitle: 'Kỷ niệm',
+    altWithYear: 'Kỷ niệm năm',
+    footer: 'Gửi mẹ',
+  },
   nav: {
     menu: 'Menu',
+  },
+  language: {
+    label: 'Ngôn ngữ',
   },
   skip: {
     button: 'Bỏ qua ⏭',

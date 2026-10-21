@@ -6,6 +6,8 @@ export interface Letter {
   title: string
   paragraphs: string[]
   signature: string
+  /** English version, shown when the site is switched to English */
+  en?: { title: string; paragraphs: string[]; signature: string }
 }
 
 export interface LifeStage {

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig, useT } from '../../i18n'
 import { photos } from '../../data/photos'
 import { stages } from '../../data/stages'
 
@@ -19,6 +19,9 @@ const arrow =
  * previous / next with a "3 / 24" counter below. The last slide is the video.
  */
 export function AlbumNav({ index, onChange, holdAuto }: Props) {
+  const config = useConfig()
+  const t = useT()
+  const intervalMs = config.album.autoIntervalMs
   const isFinale = index >= photos.length
   const currentStage = photos[index]?.stageId
   const [autoOn, setAutoOn] = useState(false)
@@ -32,9 +35,9 @@ export function AlbumNav({ index, onChange, holdAuto }: Props) {
     const t = setTimeout(() => {
       if (index + 1 >= photos.length) setAutoOn(false)
       onChange(index + 1)
-    }, config.album.autoIntervalMs)
+    }, intervalMs)
     return () => clearTimeout(t)
-  }, [auto, holdAuto, index, onChange])
+  }, [auto, holdAuto, index, onChange, intervalMs])
 
   // One entry per life stage, plus the closing video as the last section.
   const sections = [
@@ -42,7 +45,7 @@ export function AlbumNav({ index, onChange, holdAuto }: Props) {
       .filter((stage) => photos.some((p) => p.stageId === stage.id))
       .map((stage) => ({
         id: stage.id,
-        label: stage.label,
+        label: t(stage.label),
         target: photos.findIndex((p) => p.stageId === stage.id),
         active: stage.id === currentStage,
       })),

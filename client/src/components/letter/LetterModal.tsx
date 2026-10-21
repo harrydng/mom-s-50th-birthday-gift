@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import { letters } from '../../data/letters'
 import { LetterLock } from './LetterLock'
 import { ParchmentLetter } from './ParchmentLetter'
@@ -23,6 +23,7 @@ interface Props {
 const LEAVE_MS = 600
 
 export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false, unlocked, onUnlock, onSkip }: Props) {
+  const config = useConfig()
   const [leaving, setLeaving] = useState(false)
   const letter = letters[0]
 

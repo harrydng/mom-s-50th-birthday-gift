@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import './ParchmentLetter.css' // .letter-next button
 import './PasswordForm.css'
 
@@ -12,6 +12,7 @@ interface Props {
 }
 
 export function PasswordForm({ onUnlock, label, autoFocus = false }: Props) {
+  const config = useConfig()
   const [value, setValue] = useState('')
   const [wrong, setWrong] = useState(false)
 

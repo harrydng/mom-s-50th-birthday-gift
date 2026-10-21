@@ -1,6 +1,7 @@
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import type { MusicControls } from '../../hooks/useMusic'
 import { AlbumNav } from '../album/AlbumNav'
+import { LanguageToggle } from './LanguageToggle'
 import { MobileMenu, type MenuItem } from './MobileMenu'
 import { MusicPlayer } from './MusicPlayer'
 import { ViewToggle, type ToggleMode } from '../album/ViewToggle'
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export function TopNav({ music, onOpenLetter, album, viewToggle, onOpenVideo }: Props) {
+  const config = useConfig()
   // On phones these two live in a top-left dropdown instead of the bottom row.
   const menuItems: MenuItem[] = [
     ...(onOpenLetter ? [{ label: config.letters.navLabel, icon: '/envelop.png', onClick: onOpenLetter }] : []),
@@ -27,8 +29,9 @@ export function TopNav({ music, onOpenLetter, album, viewToggle, onOpenVideo }: 
   return (
     <>
       {/* Both nav pieces are fixed overlays: they take no space in the page layout. */}
-      <nav className="fixed inset-x-0 top-0 z-30 flex flex-col items-center gap-2 py-3 pl-16 pr-3 md:gap-3 md:px-4 md:py-4 animate-[drop-in_0.6s_ease_both]">
+      <nav className="fixed inset-x-0 top-0 z-30 flex flex-col items-center gap-2 px-[5.25rem] py-3 md:gap-3 md:px-4 md:py-4 animate-[drop-in_0.6s_ease_both]">
         <MobileMenu items={menuItems} />
+        <LanguageToggle />
         <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3">
           <MusicPlayer music={music} />
         </div>

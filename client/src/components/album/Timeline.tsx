@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig, useT } from '../../i18n'
 import { photos } from '../../data/photos'
 import { stages } from '../../data/stages'
 import type { Photo } from '../../types'
@@ -13,6 +13,8 @@ interface Props {
 }
 
 export function Timeline({ currentIndex, onSelect, onOpenVideo }: Props) {
+  const config = useConfig()
+  const t = useT()
   // Every life stage starts expanded; tap its heading to fold it away.
   const [collapsed, setCollapsed] = useState<Set<string>>(new Set())
   const toggle = (id: string) =>
@@ -58,7 +60,7 @@ export function Timeline({ currentIndex, onSelect, onOpenVideo }: Props) {
                   aria-expanded={open}
                 >
                   <span className={`text-xl transition-transform duration-300 ${open ? 'rotate-90' : ''}`} aria-hidden>▶</span>
-                  {stage.label}
+                  {t(stage.label)}
                   <span className="text-xl text-(--ink-soft)">({items.length})</span>
                 </button>
               </h3>

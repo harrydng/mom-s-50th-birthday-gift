@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 
 export interface MenuItem {
   label: string
@@ -9,6 +9,7 @@ export interface MenuItem {
 
 /** Phone-only dropdown (top-left) that replaces the bottom envelope/video buttons. */
 export function MobileMenu({ items }: { items: MenuItem[] }) {
+  const config = useConfig()
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 

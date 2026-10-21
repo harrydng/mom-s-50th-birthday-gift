@@ -24,5 +24,27 @@ export const letters: Letter[] = [
       'Cảm ơn mẹ vì đã là mẹ của con. Con yêu mẹ rất nhiều. Chúc mẹ tuổi 50 thật vui, thật bình yên và có thật nhiều kỷ niệm đẹp nữa cùng cả nhà mình.',
     ],
     signature: 'Con của mẹ, Harry',
+    // English version (keep in step with the Vietnamese above)
+    en: {
+      title: 'Dear Mom',
+      paragraphs: [
+        'Happy 50th birthday, Mom!',
+
+        "For your birthday this year, I wanted to make you a gift that is truly yours. I made this website to gather the photos, the memories and the loving words from the people closest to you. I hope that every time you open it, you get to see your beautiful moments again and feel just how much everyone loves you.",
+
+        "I always feel so lucky and proud to be your son. You are smart and optimistic, and you always look out for and take care of the people around you. But what I treasure most is that I can tell you anything without being afraid of being judged. You always listen, you try to understand me, and you make me feel that no matter what happens, I will always have you to come back to.",
+
+        "You are the strongest person I know. I know there are things you have had to go through that no one, not even me, could fully take away. But I want you to know that you are allowed to be tired, to be sad, and to lean on the people who love you. You don't always have to be strong or carry everything on your own.",
+
+        "I know that since I've been in Boston, I haven't spent much time with you. There were times I was caught up in studying and working, and times I was short-tempered because I was worn out. I'm not always good at putting my feelings into words, but I always love you, I always think of you, and I always wish the very best for you.",
+
+        'I hope this little gift brings you some joy, and comforts you a little on the days when you feel sad or miss us. Every photo and every message in here is our way of telling you that you are loved, and that you will always have us by your side.',
+
+        'As you turn 50, I hope you stay healthy and keep the optimism and happiness you have now. I hope you have more time for yourself: to go to the places you love, to do the things you want, and to be cared for as much as you have always cared for our whole family.',
+
+        'Thank you for being my mom. I love you so much. I wish you a 50th year full of joy and peace, and many more beautiful memories with our whole family.',
+      ],
+      signature: 'Your son, Harry',
+    },
   },
 ]

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import { PasswordForm } from '../letter/PasswordForm'
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export function VideoFinale({ onPlayingChange, unlocked, onUnlock }: Props) {
+  const config = useConfig()
   const [started, setStarted] = useState(false)
 
   return (

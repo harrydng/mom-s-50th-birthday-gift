@@ -1,4 +1,4 @@
-import { config } from '../../data/config'
+import { useConfig } from '../../i18n'
 import { PasswordForm } from './PasswordForm'
 import './ParchmentLetter.css'
 
@@ -9,6 +9,7 @@ interface Props {
 
 /** Password screen shown on the paper before the letter can be read. */
 export function LetterLock({ onUnlock, onSkip }: Props) {
+  const config = useConfig()
   return (
     <article className="parchment-letter letter-lock page-turn">
       <h2 className="handwritten parchment-greeting">{config.letters.lockTitle}</h2>
