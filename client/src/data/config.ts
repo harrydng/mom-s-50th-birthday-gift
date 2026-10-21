@@ -8,6 +8,13 @@ export const config = {
     navLabel: 'Thư',
     openAlbum: 'Tiếp',
     close: 'Đóng thư',
+    // Not real security: just a plain comparison in the browser.
+    password: 'harry',
+    lockTitle: 'Thư đang được khoá',
+    passwordPlaceholder: 'Mật khẩu',
+    unlock: 'Mở thư',
+    wrongPassword: 'Sai mật khẩu rồi, thử lại nhé',
+    noPassword: 'Không có mật khẩu? Xem dòng thời gian →',
   },
   music: {
     volume: 0.5,

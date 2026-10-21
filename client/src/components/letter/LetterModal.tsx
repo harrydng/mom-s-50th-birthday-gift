@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { config } from '../../data/config'
 import { letters } from '../../data/letters'
+import { LetterLock } from './LetterLock'
 import { ParchmentLetter } from './ParchmentLetter'
 
 interface Props {
@@ -11,12 +12,17 @@ interface Props {
   onClose?: () => void
   /** Set by the parent to fade the letter out (e.g. when skipping ahead). */
   fadeOut?: boolean
+  /** False = show the password screen instead of the letter. */
+  unlocked: boolean
+  onUnlock: () => void
+  /** "No password": go to the timeline, the letter stays locked. */
+  onSkip: () => void
 }
 
 /** How long the letter takes to fade out (keep in step with fade-out_0.6s below). */
 const LEAVE_MS = 600
 
-export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false }: Props) {
+export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false, unlocked, onUnlock, onSkip }: Props) {
   const [leaving, setLeaving] = useState(false)
   const letter = letters[0]
 
@@ -48,15 +54,19 @@ export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false }:
         )}
 
         <div className="min-h-0 w-full flex-1 overflow-y-auto">
-          <ParchmentLetter
-            key={letter.id}
-            letter={letter}
-            action={
-              <button className="letter-next" onClick={() => leave(onFinish)}>
-                {finishLabel}
-              </button>
-            }
-          />
+          {unlocked ? (
+            <ParchmentLetter
+              key={letter.id}
+              letter={letter}
+              action={
+                <button className="letter-next" onClick={() => leave(onFinish)}>
+                  {finishLabel}
+                </button>
+              }
+            />
+          ) : (
+            <LetterLock onUnlock={onUnlock} onSkip={onSkip} />
+          )}
         </div>
       </div>
     </div>
