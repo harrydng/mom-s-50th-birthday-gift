@@ -17,9 +17,8 @@ interface Props {
 const LEAVE_MS = 600
 
 export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false }: Props) {
-  const [page, setPage] = useState(0)
   const [leaving, setLeaving] = useState(false)
-  const letter = letters[page]
+  const letter = letters[0]
 
   // Fade the letter away first, then hand over, so the album can fade in softly.
   const leave = (done: () => void) => {
@@ -49,23 +48,15 @@ export function LetterModal({ finishLabel, onFinish, onClose, fadeOut = false }:
         )}
 
         <div className="min-h-0 w-full flex-1 overflow-y-auto">
-          <ParchmentLetter key={letter.id} letter={letter} />
-        </div>
-
-        <div className="mt-1 flex w-[min(var(--letter-width),94vw)] items-center justify-between gap-2 px-2 py-2">
-          <div className="flex flex-wrap items-center gap-2 md:gap-3">
-          {letters.map((l, i) => (
-            <button
-              key={l.id}
-              className={`btn ${i === page ? 'btn-primary' : ''}`}
-              onClick={() => setPage(i)}
-              aria-pressed={i === page}
-            >
-              {l.tabLabel}
-            </button>
-          ))}
-          </div>
-          <button className="btn" onClick={() => leave(onFinish)}>{finishLabel}</button>
+          <ParchmentLetter
+            key={letter.id}
+            letter={letter}
+            action={
+              <button className="letter-next" onClick={() => leave(onFinish)}>
+                {finishLabel}
+              </button>
+            }
+          />
         </div>
       </div>
     </div>

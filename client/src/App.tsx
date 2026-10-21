@@ -129,7 +129,7 @@ function App() {
 
       {letterOpen && (
         <LetterModal
-          finishLabel={introDone ? config.letters.close : config.letters.openAlbum}
+          finishLabel={config.letters.openAlbum}
           onFinish={openAlbum}
           onClose={introDone ? () => setLetterOpen(false) : undefined}
           fadeOut={fading}

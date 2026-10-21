@@ -1,6 +1,6 @@
 import type { Letter } from '../types'
 
-// One entry per letter; each gets a button (tabLabel) under the paper.
+// The letter shown before the album (only the first entry is used).
 export const letters: Letter[] = [
   {
     id: 'from-me',
@@ -13,15 +13,5 @@ export const letters: Letter[] = [
       'Con yêu mẹ rất nhiều.',
     ],
     signature: 'Con của mẹ, Harry',
-  },
-  {
-    id: 'from-dad',
-    tabLabel: 'Chồng',
-    title: 'Một lời nhắn từ bố',
-    paragraphs: [
-      'Em yêu, chúc mừng sinh nhật em.',
-      '(Viết lời nhắn của bố ở đây.)',
-    ],
-    signature: 'Chồng của em',
   },
 ]

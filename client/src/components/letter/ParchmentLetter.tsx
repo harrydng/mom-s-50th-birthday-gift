@@ -1,7 +1,9 @@
+import type { ReactNode } from 'react'
 import type { Letter } from '../../types'
 import './ParchmentLetter.css'
 
-export function ParchmentLetter({ letter }: { letter: Letter }) {
+/** `action` is rendered centred at the bottom of the paper (e.g. the "next" button). */
+export function ParchmentLetter({ letter, action }: { letter: Letter; action?: ReactNode }) {
   return (
     <article className="parchment-letter page-turn">
       <span className="parchment-detail" aria-hidden="true">❦</span>
@@ -15,6 +17,8 @@ export function ParchmentLetter({ letter }: { letter: Letter }) {
       </div>
 
       <p className="handwritten parchment-signature">{letter.signature}</p>
+
+      {action && <div className="parchment-action">{action}</div>}
     </article>
   )
 }
