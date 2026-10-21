@@ -9,6 +9,7 @@ export const config = {
     openAlbum: 'Tiếp',
     close: 'Đóng thư',
     // Not real security: just a plain comparison in the browser.
+    // One password opens both the letter and the video.
     password: 'harry',
     lockTitle: 'Thư đang được khoá',
     passwordPlaceholder: 'Mật khẩu',
@@ -44,6 +45,8 @@ export const config = {
     src: '/media/video/happy-birthday.mp4',
     poster: '/media/video/poster.jpg',
     navLabel: 'Video',
+    lockTitle: 'Video đang được khoá',
+    unlock: 'Mở video',
   },
   nav: {
     menu: 'Menu',

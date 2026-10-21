@@ -334,12 +334,12 @@ export const photos: Photo[] = [
   ...stagePhotos("09_little_ones", [
     {
       file: "00F25A9B-9199-4590-BB34-710E101747C4_1_105_c.jpeg",
-      title: "",
+      title: "Bảo Nam lúc mới chào đời",
       message: "",
     },
     {
       file: "06A4F4AE-3696-49E9-8A94-F7BCA71B7AFB_1_105_c.jpeg",
-      title: "",
+      title: "Khánh An khi mới chào đời",
       message: "",
     },
     {
@@ -364,7 +364,7 @@ export const photos: Photo[] = [
     },
     {
       file: "8DD97040-BBE1-4351-85BD-23620FD0224F_1_105_c.jpeg",
-      title: "",
+      title: "Em Nam nghịch lộ mông",
       message: "",
     },
     {
@@ -395,7 +395,7 @@ export const photos: Photo[] = [
     // A video clip: it gets play controls in the album.
     {
       file: "1905F034-7F2E-4D82-8A4A-E07E997E1D85.mov",
-      title: "",
+      title: "Bảo Nam lần đầu lẫy",
       message: "",
     },
   ]),

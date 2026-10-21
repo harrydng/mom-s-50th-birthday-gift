@@ -19,8 +19,8 @@ const LETTER_FADE_MS = 600
 function App() {
   const [view, setView] = useState<View>('envelope')
   const [letterOpen, setLetterOpen] = useState(false)
-  // The letter asks for a password until it has been entered once.
-  const [letterUnlocked, setLetterUnlocked] = useState(false)
+  // The letter and the video ask for the password until it has been entered once (in either place).
+  const [unlocked, setUnlocked] = useState(false)
   // Album stays hidden until she has finished the letters the first time.
   const [introDone, setIntroDone] = useState(false)
   const [albumIndex, setAlbumIndex] = useState(0)
@@ -111,6 +111,8 @@ function App() {
             index={albumIndex}
             onIndexChange={changeIndex}
             onVideoPlayingChange={onVideoPlayingChange}
+            videoUnlocked={unlocked}
+            onUnlock={() => setUnlocked(true)}
           />
         )}
         {view === 'timeline' && (
@@ -132,8 +134,8 @@ function App() {
       {letterOpen && (
         <LetterModal
           finishLabel={config.letters.openAlbum}
-          unlocked={letterUnlocked}
-          onUnlock={() => setLetterUnlocked(true)}
+          unlocked={unlocked}
+          onUnlock={() => setUnlocked(true)}
           onSkip={skip}
           onFinish={openAlbum}
           onClose={introDone ? () => setLetterOpen(false) : undefined}

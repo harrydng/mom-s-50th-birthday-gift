@@ -8,9 +8,12 @@ interface Props {
   index: number
   onIndexChange: (index: number) => void
   onVideoPlayingChange: (playing: boolean) => void
+  /** Shared with the letter: one password opens both. */
+  videoUnlocked: boolean
+  onUnlock: () => void
 }
 
-export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
+export function Album({ index, onIndexChange, onVideoPlayingChange, videoUnlocked, onUnlock }: Props) {
   const trackRef = useRef<HTMLDivElement>(null)
 
   // Jump straight to the remembered slide when the album (re)appears.
@@ -59,7 +62,7 @@ export function Album({ index, onIndexChange, onVideoPlayingChange }: Props) {
           </article>
         ))}
         <article className="flex w-full shrink-0 snap-center items-center justify-center px-4">
-          <VideoFinale onPlayingChange={onVideoPlayingChange} />
+          <VideoFinale onPlayingChange={onVideoPlayingChange} unlocked={videoUnlocked} onUnlock={onUnlock} />
         </article>
       </div>
     </section>
